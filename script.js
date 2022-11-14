@@ -1,3 +1,4 @@
+//setup + initiating variables
 const c = document.getElementById("myCanvas");
 const myCanvas = c.getContext("2d");
 
@@ -5,203 +6,235 @@ myCanvas.lineWidth = 5;
 myCanvas.lineJoin = 'round';
 myCanvas.lineCap = 'round';
 
+let mouseX = 0;
+let mouseY = 0;
+
+let frames = [];
+
+let dragging = false;
+let editMode = true;
+let currentFrameNum = 0;
+let f = 0;
+
+
+//functions and classes
+class Point {
+	constructor(x, y) {
+  	this.x = x;
+    this.y = y;
+  }
+}
+
 class StickFigure {
 
   constructor() {
-    this.headx = 200;
-    this.heady = 100;
     this.headr = 25;
-    
-    this.x1 = 200;
-    this.y1 = 150;
-    
-    this.x2 = 178;
-    this.y2 = 178;
-    
-    this.x3 = 150;
-    this.y3 = 200;
-    
-    this.x4 = 222;
-    this.y4 = 178;
-    
-    this.x5 = 250;
-    this.y5 = 200;
-    
-    this.x6 = 200;
-    this.y6 = 240;
-    
-    this.x7 = 175;
-    this.y7 = 275;
-    
-    this.x8 = 150;
-    this.y8 = 300;
-    
-    this.x9 = 225;
-    this.y9 = 275;
-    
-    this.x10 = 250;
-    this.y10 = 300;
-
+  	this.p = [];
+    this.p[0] = new Point(200, 100);
+    this.p[1] = new Point(200, 150);
+    this.p[2] = new Point(178, 178);
+		this.p[3] = new Point(150, 200);
+		this.p[4] = new Point(222, 178);
+    this.p[5] = new Point(250, 200);
+    this.p[6] = new Point(200, 240);
+    this.p[7] = new Point(175, 275);
+    this.p[8] = new Point(150, 300);
+    this.p[9] = new Point(225, 275);
+    this.p[10] = new Point(250, 300);
+    this.movingPoint = this.p[0];
   }
-  
+
   changeHead(x, y) {
-  	this.headx += x;
-    this.heady += y;
+    this.p[0].x += x;
+    this.p[0].y += y;
     return;
   }
 
   change1(x, y) {
-  	this.x1 += x;
-    this.y1 += y;
-  	return;
-  }
-  
-  change2(x, y){
-  	this.x2 += x;
-    this.y2 += y;
+    this.p[1].x += x;
+    this.p[1].y += y;
     return;
   }
-  
-  change3(x, y){
-    this.x3 += x;
-    this.y3 += y;
+
+  change2(x, y) {
+    this.p[2].x += x;
+    this.p[2].y += y;
     return;
   }
-  
-  change4(x, y){
-    this.x4 += x;
-    this.y4 += y;
+
+  change3(x, y) {
+    this.p[3].x += x;
+    this.p[3].y += y;
     return;
   }
-  
-  change5(x, y){
-    this.x5 += x;
-    this.y5 += y;
+
+  change4(x, y) {
+    this.p[4].x += x;
+    this.p[4].y += y;
     return;
   }
-  
+
+  change5(x, y) {
+    this.p[5].x += x;
+    this.p[5].y += y;
+    return;
+  }
+
   change6(x, y) {
-    this.x6 += x;
-    this.y6 += y;
+    this.p[6].x += x;
+    this.p[6].y += y;
     return;
   }
-  
+
   change7(x, y) {
-    this.x7 += x;
-    this.y7 += y;
+    this.p[7].x += x;
+    this.p[7].y += y;
     return;
   }
-  
+
   change8(x, y) {
-    this.x8 += x;
-    this.y8 += y;
+    this.p[8].x += x;
+    this.p[8].y += y;
     return;
   }
-  
+
   change9(x, y) {
-    this.x9 += x;
-    this.y9 += y;
+    this.p[9].x += x;
+    this.p[9].y += y;
     return;
   }
-  
+
   change10(x, y) {
-    this.x10 += x;
-    this.y10 += y;
+    this.p[10].x += x;
+    this.p[10].y += y;
     return;
   }
-  
+
   draw() {
-  	line(this.x1, this.y1, this.x2, this.y2);
-		line(this.x2, this.y2, this.x3, this.y3);
-		line(this.x1, this.y1, this.x4, this.y4);
-		line(this.x4, this.y4, this.x5, this.y5);
-		line(this.x1, this.y1, this.x6, this.y6);
-		line(this.x6, this.y6, this.x7, this.y7);
-		line(this.x7, this.y7, this.x8, this.y8);
-		line(this.x6, this.y6, this.x9, this.y9);
-		line(this.x9, this.y9, this.x10, this.y10);
-		circle(this.headx, this.heady, this.headr);
+    line(this.p[1].x, this.p[1].y, this.p[2].x, this.p[2].y);
+    line(this.p[2].x, this.p[2].y, this.p[3].x, this.p[3].y);
+    line(this.p[1].x, this.p[1].y, this.p[4].x, this.p[4].y);
+    line(this.p[4].x, this.p[4].y, this.p[5].x, this.p[5].y);
+    line(this.p[1].x, this.p[1].y, this.p[6].x, this.p[6].y);
+    line(this.p[6].x, this.p[6].y, this.p[7].x, this.p[7].y);
+    line(this.p[7].x, this.p[7].y, this.p[8].x, this.p[8].y);
+    line(this.p[6].x, this.p[6].y, this.p[9].x, this.p[9].y);
+    line(this.p[9].x, this.p[9].y, this.p[10].x, this.p[10].y);
+    circle(this.p[0].x, this.p[0].y, this.headr);
+  }
+  
+  findPoint() {
+  	let tempDist = dist(this.p[0].x, this.p[0].y, mouseX, mouseY);
+    let tempP = this.p[0];
+    for (let i = 0; i < 11; i++) {
+    	if (dist(this.p[i].x, this.p[i].y, mouseX, mouseY) < tempDist) {
+      	tempP = this.p[i];
+        tempDist = dist(this.p[i].x, this.p[i].y, mouseX, mouseY);
+      }
+    }
+    this.movingPoint = tempP;
+    
+  }
+  
+  movePoint() {
+  	this.movingPoint.x = mouseX;
+    this.movingPoint.y = mouseY;
   }
 
 }
+
 function line(x1, y1, x2, y2) {
-	myCanvas.beginPath();
+  myCanvas.beginPath();
   myCanvas.moveTo(x1, y1);
   myCanvas.lineTo(x2, y2);
   myCanvas.stroke();
 }
+
 function circle(x, y, r) {
-	myCanvas.beginPath();
-  myCanvas.arc (x, y, r, 0, 2*Math.PI);
-	myCanvas.stroke();           
+  myCanvas.beginPath();
+  myCanvas.arc(x, y, r, 0, 2 * Math.PI);
+  myCanvas.stroke();
 }
 
-
-//create array of keyframes and define each (also applies transformation to each for now, until drag and drop editing is finished)
-let frames = [];
-for (var i = 0; i <= 10; i++) {
-	let frame = new StickFigure();
-  frame.change4(2*i, -2*i);
-  frame.change5(2*i, -6*i);
-  frames[i] = frame;
+function dist(x1, y1, x2, y2) {
+	return Math.sqrt(Math.pow((x2 - x1), 2) + Math.pow((y2 - y1), 2));
 }
 
-interval = setInterval(doStuff, 100);
+//toggles drag mode and gets point that is being dragged
+function mouseDown() {
+	if (editMode == true) {
+		if (dragging == true) {
+ 		 	dragging = false;
+	  } else {
+ 		 	frames[currentFrameNum].findPoint();
+ 		 	dragging = true;
+    }
+  }
+}
 
-//draws each frame
-var f = 0;
+//goes to previous frame
+function back() {
+	if (0 < currentFrameNum && currentFrameNum <= (frames.length - 1)) {
+		currentFrameNum --;
+  }
+}
+
+//goes to next frame
+function forward() {
+	if (0 <= currentFrameNum && currentFrameNum < (frames.length - 1)) {
+		currentFrameNum ++;
+  }
+}
+
+//draws drag mode animation
 function doStuff() {
+	myCanvas.clearRect(0, 0, 400, 400);
+  frames[currentFrameNum].draw();
+}
+
+//animates drag mode
+function startDragMode() {
+	draginterval = setInterval(doStuff, 100);
+}
+
+function stopDragMode() {
+	clearInterval(draginterval);
+}
+
+function play() {
+	stopDragMode();
+	editMode = false;
+  a = setInterval(animate, 100);
+}
+
+function animate() {
 	myCanvas.clearRect(0, 0, 400, 400);
   frames[f].draw();
   f++;
   if (f >= frames.length) {
-  	clearInterval(interval);
+  	clearInterval(a);
+  	startDragMode();
+ 	 	editMode = true;
   }
 }
 
-/*var headx = 200;
-var heady = 100;
-var headr = 25;
 
-var x1 = 200;
-var y1 = 150;
+//body of code i guess?
 
-var x2 = 178;
-var y2 = 178;
+//makes frames
+for (var i = 0; i <= 10; i++) {
+	let frame = new StickFigure();
+  frames[i] = frame;
+}
 
-var x3 = 150;
-var y3 = 200;
+//watches for mouse moved and moves points if dragging
+c.addEventListener("mousemove", function(e) { 
+    var cRect = c.getBoundingClientRect();
+    mouseX = Math.round(e.clientX - cRect.left);
+    mouseY = Math.round(e.clientY - cRect.top);
+    if (dragging == true && editMode == true) {
+    	frames[currentFrameNum].movePoint();
+    }
+});
 
-var x4 = 222;
-var y4 = 178;
-
-var x5 = 250;
-var y5 = 200;
-
-var x6 = 200;
-var y6 = 240;
-
-var x7 = 175;
-var y7 = 275;
-
-var x8 = 150;
-var y8 = 300;
-
-var x9 = 225;
-var y9 = 275;
-
-var x10 = 250;
-var y10 = 300;
-
-line(x1, y1, x2, y2);
-line(x2, y2, x3, y3);
-line(x1, y1, x4, y4);
-line(x4, y4, x5, y5);
-line(x1, y1, x6, y6);
-line(x6, y6, x7, y7);
-line(x7, y7, x8, y8);
-line(x6, y6, x9, y9);
-line(x9, y9, x10, y10);
-circle(headx, heady, headr);
-
-*/
+startDragMode();
