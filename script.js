@@ -189,7 +189,15 @@ function forward() {
 //draws drag mode animation
 function doStuff() {
 	myCanvas.clearRect(0, 0, 400, 400);
+  if (currentFrameNum > 0) {
+  	myCanvas.strokeStyle = "blue";
+    myCanvas.globalAlpha = 0.5;
+    frames[currentFrameNum - 1].draw();
+    myCanvas.strokeStyle = "black";
+    myCanvas.globalAlpha = 1;
+  }
   frames[currentFrameNum].draw();
+  
 }
 
 //animates drag mode
@@ -215,6 +223,7 @@ function animate() {
   	clearInterval(a);
   	startDragMode();
  	 	editMode = true;
+    f = 0;
   }
 }
 
