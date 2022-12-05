@@ -1,7 +1,61 @@
-html, body {
-  margin: 0;
-  padding: 0;
+body {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 13px;
+    color:#333
 }
+
+p {
+    padding: 10px;
+}
+
+#wrapper {
+    margin: 0 auto;
+    width: 500px;
+}
+
+#headerwrap {
+    width: auto;
+    float: left;
+    margin: auto;
+}
+
+#header {
+    height: 120px;
+    background: #EEEEEE;
+    border-radius: 10px;
+    margin: 50px auto;
+}
+
+#contentwrap {
+    width: auto;
+    float: left;
+    margin: 50px auto;
+}
+
+#content {
+    background: #FFFFFF;
+    border-radius: 10px;
+    border: 1px solid #ebebeb;
+    margin: 5px;
+}
+
+
 canvas {
   display: block;
+  margin: auto;
 }
+
+button {
+  font-family: verdana;
+  color: #000000 !important;
+  font-size: 16px;
+  padding: 10px 15px;
+  border-radius: 10px;
+  border: 2px solid #137D24;
+  background: #8DD68D;
+}
+button:hover {
+  color: #000000 !important;
+  background: #85C985;
+}
+
