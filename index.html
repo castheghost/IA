@@ -1,21 +1,35 @@
+
+
+
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Portal - Layout</title>
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
-    <h1 id="header"></h1>
-    <p>
-    Edit the frames by clicking on a joint, moving it, then clicking in the place you want it. Switch frames with the buttons below. Press play to animate!
-    </p>
-    <canvas id="myCanvas" width="400" height="400" style="border: 1pt solid black" onmousedown="mouseDown()"></canvas>>
-    <button type="button" id="backBtn" onclick="back()">previous frame</button>
-    <button type="button" id="playBtn" onclick="play()">play</button>
-    <button type="button" id="forwardBtn" onclick="forward()">next frame</button>
-    <button type="button" id="addBtn" onclick="add()">add frame</button>
-    <dd id="frameNumDisplay">1</dd>
-    <script src="script.js"></script>
+    <div id="wrapper">
+      <div id="headerwrap">
+        <div id="header">
+          <h1>
+          Instructions
+          </h1>
+          <p>
+          Edit the frames by clicking on a joint, moving it, then clicking in the place you want it. Switch frames with the buttons below. Press play to animate!
+          </p>             
+        </div>
+        <div id="contentwrap">
+          <div id="content">  
+            <canvas id="myCanvas" width="400" height="400" style="border: 1pt solid black" onmousedown="mouseDown()"></canvas>
+            <button type="button" id="backBtn" onclick="back()">previous frame</button>
+            <button type="button" id="playBtn" onclick="play()">play</button>
+            <button type="button" id="forwardBtn" onclick="forward()">next frame</button>
+            <button type="button" id="addBtn" onclick="add()">add frame</button>
+            <dd id="frameNumDisplay">1</dd>
+            <script src="script.js"></script>
+           </div>
+        </div>
+      </div>
+    </div>
   </body>
 </html>
