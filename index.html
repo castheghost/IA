@@ -19,13 +19,20 @@
           </p>             
         </div>
         <div id="contentwrap">
+        <canvas id="myCanvas" width="400" height="400" style="border: 1pt solid black" onmousedown="mouseDown()"></canvas>
+        <p id="frameNumDisplay">1/1</p>
           <div id="content">  
-            <canvas id="myCanvas" width="400" height="400" style="border: 1pt solid black" onmousedown="mouseDown()"></canvas>
-            <button type="button" id="backBtn" onclick="back()">previous frame</button>
-            <button type="button" id="playBtn" onclick="play()">play</button>
-            <button type="button" id="forwardBtn" onclick="forward()">next frame</button>
-            <button type="button" id="addBtn" onclick="add()">add frame</button>
-            <dd id="frameNumDisplay">1/1</dd>
+            <button type="button" id="backBtn" onclick="back()">
+              <img src="https://static.thenounproject.com/png/581653-200.png" alt="buttonpng"/>
+            </button>
+            <button type="button" id="playBtn" onclick="play()">
+              <img src="https://static.vecteezy.com/system/resources/previews/009/992/294/original/play-button-icon-sign-design-free-png.png" alt="buttonpng"</button>
+            <button type="button" id="forwardBtn" onclick="forward()">
+              <img src="https://static.thenounproject.com/png/581650-200.png" alt="buttonpng"/>
+            </button>
+            <button type="button" id="addBtn" onclick="add()">
+              <img src="https://cdn-icons-png.flaticon.com/512/16/16057.png" alt="buttonpng"/>
+            </button>
             <script src="script.js"></script>
            </div>
         </div>
