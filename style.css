@@ -1,42 +1,48 @@
 body {
-    font-family: Verdana, Arial, Helvetica, sans-serif;
-    font-size: 13px;
-    color:#333
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-size: 13px;
+  color: #333;
 }
 
 p {
-    padding: 10px;
+  padding: 10px;
+  text-align: center;
+}
+
+h1 {
+  padding: 10px;
+  margin: 10px;
+  text-align: center;
 }
 
 #wrapper {
-    margin: 0 auto;
-    width: 500px;
+  margin: auto;
+  width: 500px;
 }
 
 #headerwrap {
-    width: auto;
-    float: left;
-    margin: auto;
+  width: auto;
+  float: left;
+  margin: auto;
 }
 
 #header {
-    height: 120px;
-    background: #EEEEEE;
-    border-radius: 10px;
-    margin: 50px auto;
+  height: 140px;
+  background: #EEEEEE;
+  border-radius: 10px;
+  margin: auto auto;
 }
 
 #contentwrap {
-    width: auto;
-    float: left;
-    margin: 50px auto;
+  width: auto;
+  float: center;
+  margin: 50px auto;
 }
 
 #content {
-    background: #FFFFFF;
-    border-radius: 10px;
-    border: 1px solid #ebebeb;
-    margin: 5px;
+  background: #FFFFFF;
+  margin-left: 132px;
+  padding: 10px;
 }
 
 
@@ -46,16 +52,21 @@ canvas {
 }
 
 button {
-  font-family: verdana;
   color: #000000 !important;
   font-size: 16px;
-  padding: 10px 15px;
-  border-radius: 10px;
-  border: 2px solid #137D24;
-  background: #8DD68D;
-}
-button:hover {
-  color: #000000 !important;
-  background: #85C985;
+  padding: 0px;
+  border: 0px;
+  margin: auto 10px;
+  background: #FFFFFF;
 }
 
+button:hover {
+  color: #000000 !important;
+  box-shadow: 1px 1px #DDDDDD;
+  background: #EEEEEE;
+}
+
+img {
+  width: 50px;
+  height: 50px;
+}
